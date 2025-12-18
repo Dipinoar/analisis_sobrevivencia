@@ -13,6 +13,14 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     libnlopt-dev \
     cmake \
+    libglpk-dev \
+    libgmp3-dev \
+    libmpfr-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
