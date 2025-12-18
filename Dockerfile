@@ -1,6 +1,7 @@
 # Dockerfile para desplegar app_analisis_completo.R
 # Base image: Shiny Server sobre Debian/Ubuntu
-FROM rocker/shiny:4.3.1
+# Forzamos linux/amd64 para compatibilidad con Render y Macs M1/M2 (vía Rosetta)
+FROM --platform=linux/amd64 rocker/shiny:4.3.1
 
 # 1. Instalar dependencias del sistema necesarias para compilar paquetes de R
 # libnlopt-dev es necesario para 'car' / 'lme4'
@@ -23,8 +24,8 @@ RUN R -e "install.packages(c('shinydashboard', 'DT', 'ggplot2', 'dplyr', 'tidyr'
 RUN rm -rf /srv/shiny-server/*
 
 # 4. Copiar los archivos de la aplicación
-# IMPORTANTE: Renombramos app_analisis_completo.R a app.R para que Shiny Server lo detecte automáticamente
-COPY app_analisis_completo.R /srv/shiny-server/app.R
+# En la carpeta deploy_shinyapps, el archivo ya se llama app.R
+COPY app.R /srv/shiny-server/
 COPY datos_modelo_final.rds /srv/shiny-server/
 COPY modelo_final.rds /srv/shiny-server/
 COPY a35ad07d-eceb-45e0-8c34-1ac40f634652.csv /srv/shiny-server/
