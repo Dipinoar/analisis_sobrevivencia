@@ -1,0 +1,10 @@
+name: deploy_shinyapps
+title:
+username: dipinoar
+account: dipinoar
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16331098
+bundleId: 11339371
+url: https://dipinoar.shinyapps.io/deploy_shinyapps/
+version: 1
